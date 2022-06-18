@@ -1,35 +1,35 @@
-var quizStatus = true; 
-var questionNumber = 0; 
-var answerNumber = 0; 
-var score = 0; 
-var highScore = 50; 
-var finalAnswerCheck = 0 
-var checkTimes = 1 
-var viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
-var startQuizBtnEl = document.getElementById('start-quiz'); 
+const quizStatus = true; 
+const questionNumber = 0; 
+const answerNumber = 0; 
+const score = 0; 
+const highScore = 50; 
+const finalAnswerCheck = 0 
+const checkTimes = 1 
+const viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
+const startQuizBtnEl = document.getElementById('start-quiz'); 
 
 
-var answer1BtnEl = document.getElementById('answer1'); 
-var answer2BtnEl = document.getElementById('answer2'); 
-var answer3BtnEl = document.getElementById('answer3'); 
-var answer4BtnEl = document.getElementById('answer4'); 
-var submitScoreEl = document.getElementById('submitScore'); 
+const answer1BtnEl = document.getElementById('answer1'); 
+const answer2BtnEl = document.getElementById('answer2'); 
+const answer3BtnEl = document.getElementById('answer3'); 
+const answer4BtnEl = document.getElementById('answer4'); 
+const submitScoreEl = document.getElementById('submitScore'); 
 
 
-var questionsEl = document.getElementById('questions'); 
+const questionsEl = document.getElementById('questions'); 
 
-var mainDivEl = document.getElementById('mainDiv'); 
-var htmlTimeLeft = document.getElementById('timeLeft'); 
-var answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
-var questionDisplayEl = document.createElement("questionDisplay"); 
-var finalScoreDisplayEl = document.createElement("finalScoreDisplay"); 
+const mainDivEl = document.getElementById('mainDiv'); 
+const htmlTimeLeft = document.getElementById('timeLeft'); 
+const answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
+const questionDisplayEl = document.createElement("questionDisplay"); 
+const finalScoreDisplayEl = document.createElement("finalScoreDisplay"); 
 
-var enterInitialsEl = document.createElement("enterInitials"); 
-var enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); 
+const enterInitialsEl = document.createElement("enterInitials"); 
+const enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); 
 
-var button1234 = document.createElement("button"); 
+const button1234 = document.createElement("button"); 
 
-var timeLeft = 60; 
+const timeLeft = 60; 
 
 answer1BtnEl.style.display = 'none';
 answer2BtnEl.style.display = 'none';
@@ -39,12 +39,12 @@ submitScoreEl.style.display = 'none';
 answerCorrectWrong.style.display='none';
 enterInitialsTextArea.style.display='none';
 
-var questionsObject = { 
+const questionsObject = { 
     correct: { 
         0 : "Inside which HTML element do we put the JavaScript?",
         1 : "Where is the correct place to insert a JavaScript?",
         2 : "Is it necessary for the external script file to contain a <script> tag?", 
-        3 : "How many ways are there with which we can declare a variable in javascript?", 
-        4 : "Is a variable named 'apple' same as 'Apple' in javascript?"
+        3 : "How many ways are there with which we can declare a constiable in javascript?", 
+        4 : "Is a constiable named 'apple' same as 'Apple' in javascript?"
     }
 };
