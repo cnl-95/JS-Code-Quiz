@@ -1,44 +1,51 @@
-var quizStatus = true; 
-var questionNumber = 0; 
-var answerNumber = 0; 
+var quizOn = true; 
+var startNumb = 0; 
+var correctNumber = 0; 
 var score = 0; 
 var highScore = 50; 
-var finalAnswerCheck = 0 
-var checkTimes = 1 
-var viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
-var startQuizBtnEl = document.getElementById('start-quiz'); 
-var answer1BtnEl = document.getElementById('answer1'); 
-var answer2BtnEl = document.getElementById('answer2'); 
-var answer3BtnEl = document.getElementById('answer3'); 
-var answer4BtnEl = document.getElementById('answer4'); 
-var submitScoreEl = document.getElementById('submitScore'); 
-var questionsEl = document.getElementById('questions'); 
-var mainDivEl = document.getElementById('mainDiv'); 
-var htmlTimeLeft = document.getElementById('timeLeft'); 
-var answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
-var questionDisplayEl = document.createElement("questionDisplay"); 
-var finalScoreDisplayEl = document.createElement("finalScoreDisplay"); 
-var enterInitialsEl = document.createElement("enterInitials"); 
-var enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); 
-var button1234 = document.createElement("button"); 
-var timeLeft = 60; 
+var answerCheck = 0 
+var timeCheck = 1 
+var highScoreCheck = document.getElementById('view-high-scores'); 
+
+var startQuiz = document.getElementById('start-quiz'); 
+var answerOne = document.getElementById('answer1'); 
+var answerTwo = document.getElementById('answer2'); 
+var answerThree = document.getElementById('answer3'); 
+var answerFour = document.getElementById('answer4'); 
+var submitScore = document.getElementById('submitScore'); 
+
+var questionsDisplay = document.getElementById('questions'); 
+var mainDiv = document.getElementById('mainDiv'); 
+var timeSpan = document.getElementById('timeLeft'); 
+var answerOptions = document.getElementById('answerOptions'); 
+var displayQuestions = document.createElement("questionDisplay"); 
+
+var finalScore = document.createElement("finalScoreDisplay"); 
+var nameInput = document.createElement("enterInitials"); 
+var sumbitName = document.createElement("enterInitialsTextArea"); 
+var answerButtons = document.createElement("button"); 
+
+
+var timerCount = 60; 
 
 
 
-answer1BtnEl.style.display = 'none';
-answer2BtnEl.style.display = 'none';
-answer3BtnEl.style.display = 'none';
-answer4BtnEl.style.display = 'none';
-submitScoreEl.style.display = 'none';
-answerCorrectWrong.style.display='none';
+answerOne.style.display = 'none';
+answerTwo.style.display = 'none';
+answerThree.style.display = 'none';
+answerFour.style.display = 'none';
+submitScore.style.display = 'none';
+answerOptions.style.display='none';
 enterInitialsTextArea.style.display='none';
+
+
 
 var questionsObject = { 
     correct: { 
         0 : "Inside which HTML element do we put the JavaScript?",
         1 : "Where is the correct place to insert a JavaScript?",
         2 : "Is it necessary for the external script file to contain a <script> tag?", 
-        3 : "How many ways are there with which we can declare a variable in javascript?", 
+        3 : "How many ways are there with which we can declare a variable in javascript?",
         4 : "Is a variable named 'apple' same as 'Apple' in javascript?"
     }
 };
@@ -74,9 +81,9 @@ var answersObject = {
 };
 
 
-htmlTimeLeft.textContent = timeLeft;
+timeSpan.textContent = timerCount;
 
-viewHighScoresBtnEl.addEventListener("click", function() { 
+highScoreCheck.addEventListener("click", function() { 
 
     var quizUsers = "";
     var substringTest ="";
@@ -97,19 +104,18 @@ viewHighScoresBtnEl.addEventListener("click", function() {
 
 });
 
-submitScoreEl.addEventListener("click", function() { 
+submitScore.addEventListener("click", function() { 
     
 
     var quizLocalStorage = "quiz";
     var quizUserDetails = "";
     var value = [];
     
-    
+   
     quizUserDetails = quizLocalStorage + enterInitialsTextArea.value 
     value = [quizUserDetails,highScore] 
 
 
-    
     
     if (!localStorage.length) {
         localStorage.setItem("test","test");
@@ -128,7 +134,7 @@ submitScoreEl.addEventListener("click", function() {
         checkUser = localStorage.getItem(quizUserDetails);
         
    
-        if (checkUser == null) { 
+        if (checkUser == null) {
             localStorage.setItem(quizUserDetails, value); 
             window.alert("Your score of " + highScore + " has been submitted!")
             break;
@@ -145,7 +151,6 @@ submitScoreEl.addEventListener("click", function() {
 
        
         
-       
         localStorage.setItem(quizUserDetails, value); 
         window.alert(highScore + " " + "is the latest entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.")
         break; 
@@ -159,7 +164,7 @@ submitScoreEl.addEventListener("click", function() {
             break; 
         } else if ( quizUserDetails == checkUserValue[0] && highScore < checkUserValue[1] ) { 
             
-            localStorage.setItem(quizUserDetails, value); 
+            localStorage.setItem(quizUserDetails, value);
             window.alert("Your previous code of " + checkUserValue[1] + " was higher. Entry will not be added.");
             break; 
 
@@ -174,159 +179,158 @@ submitScoreEl.addEventListener("click", function() {
 } );
 
 
-answer1BtnEl.addEventListener("mouseover", function() {
+answerOne.addEventListener("mouseover", function() {
 
-    answerCorrectWrong.style.display='none';
-
-});
-
-answer2BtnEl.addEventListener("mouseover", function() {
-
-    answerCorrectWrong.style.display='none';
+    answerOptions.style.display='none';
 
 });
 
-answer3BtnEl.addEventListener("mouseover", function() {
+answerTwo.addEventListener("mouseover", function() {
 
-    answerCorrectWrong.style.display='none';
-
-});
-
-answer4BtnEl.addEventListener("mouseover", function() {
-
-    answerCorrectWrong.style.display='none';
+    answerOptions.style.display='none';
 
 });
 
-submitScoreEl.addEventListener("mouseover", function() {
+answerThree.addEventListener("mouseover", function() {
 
-    answerCorrectWrong.style.display='none';
+    answerOptions.style.display='none';
 
 });
 
-startQuizBtnEl.addEventListener("click", function() {
+answerFour.addEventListener("mouseover", function() {
+
+    answerOptions.style.display='none';
+
+});
+
+submitScore.addEventListener("mouseover", function() {
+
+    answerOptions.style.display='none';
+
+});
+
+startQuiz.addEventListener("click", function() {
 
 
-    startQuizBtnEl.style.display = 'none';
+    startQuiz.style.display = 'none';
     questionDisplay.style.display='none';
     finalScoreDisplay.style.display = 'none';
     enterInitials.style.display='none';
     score = 0; 
-    timeLeft=60;
-    htmlTimeLeft.textContent = timeLeft; 
-    finalAnswerCheck = 0; 
-    checkTimes = 1; 
+    timerCount=60;
+    timeSpan.textContent = timerCount; 
+    answerCheck = 0; 
+    timeCheck = 1; 
 
- 
+
     
     
     var timeInterval = setInterval(function() {
 
-        if (score === 1){ 
+        if (score === 1){
             highScore -= 10;
         }
 
         score = 0; 
 
         
-        if(timeLeft >= 1 && finalAnswerCheck !== 1) {
+        if(timerCount >= 1 && answerCheck !== 1) {
             
-            questionDisplay.textContent = questionsObject.correct[questionNumber];
+            questionDisplay.textContent = questionsObject.correct[startNumb];
             
             questionDisplay.style.display= ""; 
-            answer1BtnEl.style.display = ""; 
-            answer2BtnEl.style.display = "";
-            answer3BtnEl.style.display = "";
-            answer4BtnEl.style.display = "";
+            answerOne.style.display = ""; 
+            answerTwo.style.display = "";
+            answerThree.style.display = "";
+            answerFour.style.display = "";
 
-            
-            answer1BtnEl.textContent = answersObject.answers[answerNumber][0];
-            answer2BtnEl.textContent = answersObject.answers[answerNumber][1];
-            answer3BtnEl.textContent = answersObject.answers[answerNumber][2];
-            answer4BtnEl.textContent = answersObject.answers[answerNumber][3];
+        
+            answerOne.textContent = answersObject.answers[correctNumber][0];
+            answerTwo.textContent = answersObject.answers[correctNumber][1];
+            answerThree.textContent = answersObject.answers[correctNumber][2];
+            answerFour.textContent = answersObject.answers[correctNumber][3];
            
-            gridContainer.appendChild(questionDisplayEl);
-            gridContainer.appendChild(answer1BtnEl);
-            gridContainer.appendChild(finalScoreDisplayEl);
-            timeLeft -= 1;
-            htmlTimeLeft.textContent = timeLeft;
-            console.log("time left:" + timeLeft)
+            gridContainer.appendChild(displayQuestions);
+            gridContainer.appendChild(answerOne);
+            gridContainer.appendChild(finalScore);
+            timerCount -= 1;
+            timeSpan.textContent = timerCount;
+            console.log("time left:" + timerCount)
             
 
-            answer1BtnEl.addEventListener("click", function() {
+            answerOne.addEventListener("click", function() {
 
-                if (questionDisplay.textContent === "Where is the correct place to insert a JavaScript?" && answer1BtnEl.textContent === "Both the head section and the body section are correct") {
+                if (questionDisplay.textContent === "Where is the correct place to insert a JavaScript?" && answerOne.textContent === "Both the head section and the body section are correct") {
                     console.log("Correct");
                    
-                    questionNumber = 2; 
-                    answerNumber = 4;
-                    answerCorrectWrong.style.display="";
-                    answerCorrectWrong.textContent = "Correct!";
+                    startNumb = 2; 
+                    correctNumber = 4;
+                    answerOptions.style.display="";
+                    answerOptions.textContent = "Correct!";
             
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
+                    answerLayout.appendChild(answerOptions);
                 } else {
 
-                    
+                   
 
-                    switch(answer1BtnEl.textContent) {
+                    switch(answerOne.textContent) {
                         case "<javascript>":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             
                             score = 1; 
-                            questionNumber = 1; 
-                            answerNumber = 1;
+                            startNumb = 1; 
+                            correctNumber = 1;
                             break;
                         case "Yes":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             
                             score = 1; 
-                            questionNumber = 3; 
-                            answerNumber = 2;
+                            startNumb = 3; 
+                            correctNumber = 2;
                             break;
                         case "Only one":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             
                             score = 1; 
-                            questionNumber = 4; 
-                            answerNumber = 3;
+                            startNumb = 4;
+                            correctNumber = 3;
                         break;
                         case "Yes":
                             console.log("Correct");
                             
-                            answerCorrectWrong.style.display=""; 
-                            answerCorrectWrong.textContent = "Correct!";
+                            answerOptions.style.display=""; 
+                            answerOptions.textContent = "Correct!";
                             
-                            answerCorrectWrongGrid.appendChild(answerCorrectWrong);
+                            answerLayout.appendChild(answerOptions);
                             
-                            questionNumber = 0; 
-                            answerNumber = 0; 
+                            startNumb = 0; 
+                            correctNumber = 0; 
                             console.log("I'm here" + timeInterval);
-                            answer1BtnEl.style.display = 'none';
-                            answer2BtnEl.style.display = 'none';
-                            answer3BtnEl.style.display = 'none';
-                            answer4BtnEl.style.display = 'none';
-                            answerCorrectWrong.style.display='none'; 
-                            startQuizBtnEl.style.display = 'none'; 
-                            
+                            answerOne.style.display = 'none';
+                            answerTwo.style.display = 'none';
+                            answerThree.style.display = 'none';
+                            answerFour.style.display = 'none';
+                            answerOptions.style.display='none'; 
+                            startQuiz.style.display = 'none'; 
                             questionDisplay.textContent = "You have finished the quiz!";
                             finalScoreDisplay.style.display = ""; 
                             enterInitials.style.display = ""; 
-                            enterInitialsTextArea.style.display="";  
-                            finalAnswerCheck = 1; 
+                            enterInitialsTextArea.style.display=""; 
+                            answerCheck = 1; 
                             lastQuestionWrong();
                             finalScoreDisplay.textContent = "Your final score is: " + highScore; 
                             enterInitials.textContent = "Enter initials: "
-                            submitScoreEl.style.display = "";
-                            submitScoreEl.textContent = "Submit";                   
+                            submitScore.style.display = "";
+                            submitScore.textContent = "Submit";                   
                             
                             clearInterval(timeInterval);
                             break;
@@ -337,25 +341,25 @@ startQuizBtnEl.addEventListener("click", function() {
 
             });
 
-            answer2BtnEl.addEventListener("click", function() {
+            answerTwo.addEventListener("click", function() {
 
-                if (questionDisplay.textContent === "Is a variable named 'apple' same as 'Apple' in javascript?" && answer2BtnEl.textContent === "No") {
+                if (questionDisplay.textContent === "Is a variable named 'apple' same as 'Apple' in javascript?" && answerTwo.textContent === "No") {
                     console.log("Correct");
                    
-                    answerCorrectWrong.style.display=""; 
-                    answerCorrectWrong.textContent = "Correct!";
+                    answerOptions.style.display=""; 
+                    answerOptions.textContent = "Correct!";
 
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-                   
-                    questionNumber = 0; 
-                    answerNumber = 0; 
+                    answerLayout.appendChild(answerOptions);
+                    
+                    startNumb = 0; 
+                    correctNumber = 0; 
                     console.log("I'm here" + timeInterval);
-                    answer1BtnEl.style.display = 'none';
-                    answer2BtnEl.style.display = 'none';
-                    answer3BtnEl.style.display = 'none';
-                    answer4BtnEl.style.display = 'none';
-                    answerCorrectWrong.style.display='none'; 
-                    startQuizBtnEl.style.display = 'none'; 
+                    answerOne.style.display = 'none';
+                    answerTwo.style.display = 'none';
+                    answerThree.style.display = 'none';
+                    answerFour.style.display = 'none';
+                    answerOptions.style.display='none'; 
+                    startQuiz.style.display = 'none'; 
                     
                     questionDisplay.textContent = "You have finished the quiz!";
                     finalScoreDisplay.style.display = ""; 
@@ -363,51 +367,51 @@ startQuizBtnEl.addEventListener("click", function() {
                     enterInitialsTextArea.style.display="";  
                     finalScoreDisplay.textContent = "Your final score is: " + highScore; 
                     enterInitials.textContent = "Enter initials: "
-                    submitScoreEl.style.display = "";
-                    submitScoreEl.textContent = "Submit";                   
+                    submitScore.style.display = "";
+                    submitScore.textContent = "Submit";                   
                     
                     clearInterval(timeInterval);
                 } else {
 
-                    switch(answer2BtnEl.textContent) {
+                    switch(answerTwo.textContent) {
                         case "<js>":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                           
                             score = 1; 
-                            questionNumber = 1; 
-                            answerNumber = 1;
+                            startNumb = 1;
+                            correctNumber = 1;
                             break;
                         case "The head section":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                          
                             score = 1; 
-                            questionNumber = 2; 
-                            answerNumber = 4;
+                            startNumb = 2; 
+                            correctNumber = 4;
                             console.log(score);
                             break;
                         case "Depends on the type of include":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 3; 
-                            answerNumber = 2;
+                            startNumb = 3; 
+                            correctNumber = 2;
                             break;
                         case "Infinitely many":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 4; 
-                            answerNumber = 3;
+                            startNumb = 4; 
+                            correctNumber = 3;
                             break;
 
                             
@@ -419,72 +423,72 @@ startQuizBtnEl.addEventListener("click", function() {
                 
             });
 
-            answer3BtnEl.addEventListener("click", function() {
+            answerThree.addEventListener("click", function() {
 
-                if (questionDisplay.textContent === "Inside which HTML element do we put the JavaScript?" && answer3BtnEl.textContent === "<script>") {
+                if (questionDisplay.textContent === "Inside which HTML element do we put the JavaScript?" && answerThree.textContent === "<script>") {
+                    console.log("Correct");
+                   
+                    startNumb = 1; 
+                    correctNumber = 1;
+                    answerOptions.style.display=""; 
+                    answerOptions.textContent = "Correct!";
+                    
+                    answerLayout.appendChild(answerOptions);
+                } else if (questionDisplay.textContent === "How many ways are there with which we can declare a variable in javascript?" && answerThree.textContent === "Three") {
                     console.log("Correct");
                     
-                    questionNumber = 1; 
-                    answerNumber = 1;
-                    answerCorrectWrong.style.display=""; 
-                    answerCorrectWrong.textContent = "Correct!";
+                    startNumb = 4; 
+                    correctNumber =3;
+                    answerOptions.style.display=""; 
+                    answerOptions.textContent = "Correct!";
                     
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-                } else if (questionDisplay.textContent === "How many ways are there with which we can declare a variable in javascript?" && answer3BtnEl.textContent === "Three") {
-                    console.log("Correct");
-                    
-                    questionNumber = 4; 
-                    answerNumber =3;
-                    answerCorrectWrong.style.display=""; 
-                    answerCorrectWrong.textContent = "Correct!";
-                    
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-                } else if (questionDisplay.textContent === "Where is the correct place to insert a JavaScript?" && answer3BtnEl.textContent === "The body section") {
+                    answerLayout.appendChild(answerOptions);
+                } else if (questionDisplay.textContent === "Where is the correct place to insert a JavaScript?" && answerThree.textContent === "The body section") {
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 2; 
-                            answerNumber = 4;
+                            startNumb = 2; 
+                            correctNumber = 4;
                 }
                 
                 else {
 
-                    switch(answer3BtnEl.textContent) {
+                    switch(answerThree.textContent) {
                         case "None of the above":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 3; 
-                            answerNumber = 2;
+                            startNumb = 3;
+                            correctNumber = 2;
                             break;
                         case "Only when we use 'strict'":
                             console.log("Inside the case now");
-                            score = 1;
-                            questionNumber = 0; 
-                            answerNumber = 0; 
+                            score = 1; 
+                            startNumb = 0; 
+                            correctNumber = 0; 
                             console.log("I'm here" + timeInterval);
-                            answer1BtnEl.style.display = 'none';
-                            answer2BtnEl.style.display = 'none';
-                            answer3BtnEl.style.display = 'none';
-                            answer4BtnEl.style.display = 'none';
-                            answerCorrectWrong.style.display='none'; 
-                            startQuizBtnEl.style.display = 'none'; 
+                            answerOne.style.display = 'none';
+                            answerTwo.style.display = 'none';
+                            answerThree.style.display = 'none';
+                            answerFour.style.display = 'none';
+                            answerOptions.style.display='none'; 
+                            startQuiz.style.display = 'none'; 
                             
                             questionDisplay.textContent = "You have finished the quiz!";
                             finalScoreDisplay.style.display = ""; 
                             enterInitials.style.display = ""; 
-                            enterInitialsTextArea.style.display=""; 
-                            finalAnswerCheck = 1; 
+                            enterInitialsTextArea.style.display="";  
+                            answerCheck = 1; 
                             lastQuestionWrong();
                             finalScoreDisplay.textContent = "Your final score is: " + highScore; 
                             enterInitials.textContent = "Enter initials: "
-                            submitScoreEl.style.display = "";
-                            submitScoreEl.textContent = "Submit";                   
-                           
+                            submitScore.style.display = "";
+                            submitScore.textContent = "Submit";                   
+                            
                             clearInterval(timeInterval);
                             
                         break;
@@ -494,75 +498,74 @@ startQuizBtnEl.addEventListener("click", function() {
 
             });
 
-            answer4BtnEl.addEventListener("click", function() {
+            answerFour.addEventListener("click", function() {
 
-                if (questionDisplay.textContent === "Is it necessary for the external script file to contain a <script> tag?" && answer4BtnEl.textContent === "No") {
+                if (questionDisplay.textContent === "Is it necessary for the external script file to contain a <script> tag?" && answerFour.textContent === "No") {
                     console.log("Correct");
                    
-                    questionNumber = 3; 
-                    answerNumber = 2;
-                    answerCorrectWrong.style.display=""; 
-                    answerCorrectWrong.textContent = "Correct!"
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
+                    startNumb = 3; 
+                    correctNumber = 2;
+                    answerOptions.style.display=""; 
+                    answerOptions.textContent = "Correct!"
+                    answerLayout.appendChild(answerOptions);
 
                 } else {
 
-                    switch(answer4BtnEl.textContent) {
+                    switch(answerFour.textContent) {
                         case "<src>":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
-                            score = 1;
-                            questionNumber = 1; 
-                            answerNumber = 1;
+                            score = 1; 
+                            startNumb = 1; 
+                            correctNumber = 1;
                             break;
                         case "None of the above":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 2; 
-                            answerNumber = 4;
+                            startNumb = 2; 
+                            correctNumber = 4;
                             break;
                         case "None of these":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            questionNumber = 4; 
-                            answerNumber = 3;
+                            startNumb = 4; 
+                            correctNumber = 3;
                         break;
                         case "None of the above":
                             console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
+                            answerOptions.style.display="";
+                            answerOptions.textContent = "Wrong!";
                             
                             score = 1; 
-                            
-                            questionNumber = 0; 
-                            answerNumber = 0; 
+                            startNumb = 0; 
+                            correctNumber = 0; 
                             console.log("I'm here" + timeInterval);
-                            answer1BtnEl.style.display = 'none';
-                            answer2BtnEl.style.display = 'none';
-                            answer3BtnEl.style.display = 'none';
-                            answer4BtnEl.style.display = 'none';
-                            answerCorrectWrong.style.display='none'; 
-                            startQuizBtnEl.style.display = 'none'; 
+                            answerOne.style.display = 'none';
+                            answerTwo.style.display = 'none';
+                            answerThree.style.display = 'none';
+                            answerFour.style.display = 'none';
+                            answerOptions.style.display='none'; 
+                            startQuiz.style.display = 'none'; 
                             
                             questionDisplay.textContent = "You have finished the quiz!";
                             finalScoreDisplay.style.display = ""; 
                             enterInitials.style.display = ""; 
                             enterInitialsTextArea.style.display="";  
-                            finalAnswerCheck = 1; 
+                            answerCheck = 1; 
                             lastQuestionWrong();
                             finalScoreDisplay.textContent = "Your final score is: " + highScore; 
                             enterInitials.textContent = "Enter initials: "
-                            submitScoreEl.style.display = "";
-                            submitScoreEl.textContent = "Submit";                   
-                           
+                            submitScore.style.display = "";
+                            submitScore.textContent = "Submit";                   
+                            
                             clearInterval(timeInterval);
                         break;
                         
@@ -573,19 +576,19 @@ startQuizBtnEl.addEventListener("click", function() {
             });
 
         }
-        else if(timeLeft === 0){
+        else if(timerCount === 0){
 
           console.log("I'm here" + timeInterval);
-          questionNumber = 0; 
-          answerNumber = 0; 
-          answer1BtnEl.style.display = 'none';
-          answer2BtnEl.style.display = 'none';
-          answer3BtnEl.style.display = 'none';
-          answer4BtnEl.style.display = 'none';
-          answerCorrectWrong.style.display='none'; 
+          startNumb = 0; 
+          correctNumber = 0; 
+          answerOne.style.display = 'none';
+          answerTwo.style.display = 'none';
+          answerThree.style.display = 'none';
+          answerFour.style.display = 'none';
+          answerOptions.style.display='none'; 
           
           questionDisplay.textContent = "Game Over!. Try again by clicking on \"Click Start Quiz\"";
-          startQuizBtnEl.style.display = "";
+          startQuiz.style.display = "";
           clearInterval(timeInterval);
           
           
@@ -597,9 +600,9 @@ startQuizBtnEl.addEventListener("click", function() {
 });
 
 function lastQuestionWrong () {
-        if (finalAnswerCheck === 1 && checkTimes === 1) {
+        if (answerCheck === 1 && timeCheck === 1) {
         highScore -= 10;
-        checkTimes = 2;
+        timeCheck = 2;
         return highScore
     }
 
