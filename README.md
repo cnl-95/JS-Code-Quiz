@@ -7,9 +7,9 @@ The JS-Code-Quiz is an easy way to test your knowledge on JavaScript!
 
 
 
-![Screen Shot](imgs\mainpage.png)
-![Screen Shot](imgs\questions.png)
-![Screen Shot](imgs\finished.png)
+![Screen Shot](https://github.com/cnl-95/JS-Code-Quiz/blob/main/imgs/mainpage.png?raw=true)
+![Screen Shot](https://github.com/cnl-95/JS-Code-Quiz/blob/main/imgs/questions.png?raw=true)
+![Screen Shot](https://github.com/cnl-95/JS-Code-Quiz/blob/main/imgs/finished.png?raw=true)
 ## Technologies Used
 
 HTML/CSS/JAVASCRIPT
