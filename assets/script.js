@@ -1,27 +1,27 @@
-const quizStatus = true; 
-const questionNumber = 0; 
-const answerNumber = 0; 
-const score = 0; 
-const highScore = 50; 
-const finalAnswerCheck = 0 
-const checkTimes = 1 
-const viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
-const startQuizBtnEl = document.getElementById('start-quiz'); 
-const answer1BtnEl = document.getElementById('answer1'); 
-const answer2BtnEl = document.getElementById('answer2'); 
-const answer3BtnEl = document.getElementById('answer3'); 
-const answer4BtnEl = document.getElementById('answer4'); 
-const submitScoreEl = document.getElementById('submitScore'); 
-const questionsEl = document.getElementById('questions'); 
-const mainDivEl = document.getElementById('mainDiv'); 
-const htmlTimeLeft = document.getElementById('timeLeft'); 
-const answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
-const questionDisplayEl = document.createElement("questionDisplay"); 
-const finalScoreDisplayEl = document.createElement("finalScoreDisplay"); // Display Question
-const enterInitialsEl = document.createElement("enterInitials"); // Enter initials
-const enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); // TextArea
-const button1234 = document.createElement("button"); // Test answer 1
-const timeLeft = 60; // Global time left assignment counter
+var quizStatus = true; 
+var questionNumber = 0; 
+var answerNumber = 0; 
+var score = 0; 
+var highScore = 50; 
+var finalAnswerCheck = 0 
+var checkTimes = 1 
+var viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
+var startQuizBtnEl = document.getElementById('start-quiz'); 
+var answer1BtnEl = document.getElementById('answer1'); 
+var answer2BtnEl = document.getElementById('answer2'); 
+var answer3BtnEl = document.getElementById('answer3'); 
+var answer4BtnEl = document.getElementById('answer4'); 
+var submitScoreEl = document.getElementById('submitScore'); 
+var questionsEl = document.getElementById('questions'); 
+var mainDivEl = document.getElementById('mainDiv'); 
+var htmlTimeLeft = document.getElementById('timeLeft'); 
+var answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
+var questionDisplayEl = document.createElement("questionDisplay"); 
+var finalScoreDisplayEl = document.createElement("finalScoreDisplay"); // Display Question
+var enterInitialsEl = document.createElement("enterInitials"); // Enter initials
+var enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); // TextArea
+var button1234 = document.createElement("button"); // Test answer 1
+var timeLeft = 60; // Global time left assignment counter
 
 
 // Do not display anything that is not ready to be displayed
@@ -33,17 +33,17 @@ submitScoreEl.style.display = 'none';
 answerCorrectWrong.style.display='none';
 enterInitialsTextArea.style.display='none';
 
-const questionsObject = { // Object that holds correct answers.
+var questionsObject = { // Object that holds correct answers.
     correct: { 
         0 : "Inside which HTML element do we put the JavaScript?",
         1 : "Where is the correct place to insert a JavaScript?",
         2 : "Is it necessary for the external script file to contain a <script> tag?", // Button #4 for 
-        3 : "How many ways are there with which we can declare a constiable in javascript?", // Button #3
-        4 : "Is a constiable named 'apple' same as 'Apple' in javascript?"
+        3 : "How many ways are there with which we can declare a variable in javascript?", // Button #3
+        4 : "Is a variable named 'apple' same as 'Apple' in javascript?"
     }
 };
 
-const answersObject = { // Object that holds correct answers.
+var answersObject = { // Object that holds correct answers.
     answers: { 
         0 : {
             0: "<javascript>",
@@ -78,18 +78,18 @@ htmlTimeLeft.textContent = timeLeft;
 
 viewHighScoresBtnEl.addEventListener("click", function() { // View high scores
 
-    const quizUsers = "";
-    const substringTest ="";
-    const highScores = "";
+    var quizUsers = "";
+    var substringTest ="";
+    var highScores = "";
 
-    for (const i=0; i < localStorage.length; i++) {
-        const checkUserValue = [];
+    for (var i=0; i < localStorage.length; i++) {
+        var checkUserValue = [];
         
         quizUsers = localStorage.getItem(localStorage.key(i));
         substringTest = quizUsers.substring(0,4) 
         if (substringTest == "quiz") {
             checkUserValue = quizUsers.split(",");
-            const userName = checkUserValue[0]
+            var userName = checkUserValue[0]
             highScores += "User " + userName.substring(4) + " high score is: " + checkUserValue[1] + "\n";
        }
     }
@@ -100,9 +100,9 @@ viewHighScoresBtnEl.addEventListener("click", function() { // View high scores
 submitScoreEl.addEventListener("click", function() { // Submit high scores
     
 
-    const quizLocalStorage = "quiz";
-    const quizUserDetails = "";
-    const value = [];
+    var quizLocalStorage = "quiz";
+    var quizUserDetails = "";
+    var value = [];
     
     //If good input the value will be assign properly.
     quizUserDetails = quizLocalStorage + enterInitialsTextArea.value 
@@ -116,10 +116,10 @@ submitScoreEl.addEventListener("click", function() { // Submit high scores
     }
        
         
-    for (const i=0; i < localStorage.length; i++){
+    for (var i=0; i < localStorage.length; i++){
         
-        const checkUser = "";
-        const checkUserValue = [];
+        var checkUser = "";
+        var checkUserValue = [];
 
         // Assign value again
         quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
@@ -220,7 +220,7 @@ startQuizBtnEl.addEventListener("click", function() {
  //debugger;
     
     
-    const timeInterval = setInterval(function() {
+    var timeInterval = setInterval(function() {
 
         if (score === 1){ // For any wrong answer, remove a point
             highScore -= 10;
@@ -341,7 +341,7 @@ startQuizBtnEl.addEventListener("click", function() {
 
             answer2BtnEl.addEventListener("click", function() {
 
-                if (questionDisplay.textContent === "Is a constiable named 'apple' same as 'Apple' in javascript?" && answer2BtnEl.textContent === "No") {
+                if (questionDisplay.textContent === "Is a variable named 'apple' same as 'Apple' in javascript?" && answer2BtnEl.textContent === "No") {
                     console.log("Correct");
                     //timeLeft += 1; // Add a second for a correct answer as it will take one second to move to the next question
                     //questionNumber = 2; // Move to the next question
@@ -434,7 +434,7 @@ startQuizBtnEl.addEventListener("click", function() {
                     answerCorrectWrong.textContent = "Correct!";
                     
                     answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-                } else if (questionDisplay.textContent === "How many ways are there with which we can declare a constiable in javascript?" && answer3BtnEl.textContent === "Three") {
+                } else if (questionDisplay.textContent === "How many ways are there with which we can declare a variable in javascript?" && answer3BtnEl.textContent === "Three") {
                     console.log("Correct");
                     //timeLeft += 1; // Add a second for a correct answer as it will take one second to move to the next question
                     questionNumber = 4; // Move to the next question which  is the fifth question
