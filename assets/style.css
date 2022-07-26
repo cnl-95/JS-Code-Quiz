@@ -232,7 +232,7 @@ header {
 
 
 
-#answerCorrectWrongGrid {
+#answerLayout {
     /*width:65%; /* Contain the grid to a maximum of 80% of the flex wrapper */
     display: grid;
     grid-template-columns: 4fr;  /* Create a 4X4 grid of same size*/
@@ -242,7 +242,7 @@ header {
 
 }
 
-#answerCorrectWrong {
+#answerOptions {
     text-align: left;
     grid-column: 1 / span 4;
     grid-row: 1 / span 2;
